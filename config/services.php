@@ -31,4 +31,9 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'whatsapp' => [
+        'from-phone-number-id' => env('108065782333794'),
+        'token' => env('EAALQMeYYfRoBAJdZA0EXtTP3ZBuU5qPsxMF0H642NzHZC88ZCB7Rl15ShYR7Ph3J5csLFZCD2lUGMEMRkxjzi37fHRbEi6zd6MmuPDWOTQL8DphVALw5pPA8vl5ZAfFVkaQ8ShOk4w82BJL1bzfgjaVX0YYqWiG6jlHrqSq813ZCed5lHOAa0dwon4KLlNtddFaxeuhSsnoupVNOLjaz3oQQnYJOZAQzxGUZD'),
+    ],
+
 ];
