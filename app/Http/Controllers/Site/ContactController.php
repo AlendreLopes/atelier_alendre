@@ -31,13 +31,8 @@ class ContactController extends Controller
      */
     public function store(StoreContactRequest $request)
     {
-        $request->validate([
-            'name' => ['required', 'string', 'min:5', 'max:30'],
-            'email' => ['required', 'email', 'max:50'],
-            'phone' => ['required', 'string', 'min:10', 'max:14'],
-            'message' => ['required', 'string', 'min:30', 'max:255'],
-        ]);
-        // Contact::create();
+        Contact::create($request->validated())->with('message', 'E-mail send successfully!');
+        return to_route('home');
     }
 
     /**

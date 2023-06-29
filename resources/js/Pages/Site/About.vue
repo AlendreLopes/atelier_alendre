@@ -1,4 +1,8 @@
-<script></script>
+<script setup>
+defineProps({
+    appName: String,
+});
+</script>
 <template>
     <a id="about"></a>
     <!-- ====== About Section Start -->
@@ -611,27 +615,27 @@
                         <span
                             class="text-primary mb-2 block text-lg font-semibold"
                         >
-                            Why Choose Us
+                            Why Choose {{ appName }}
                         </span>
                         <h2
-                            class="text-dark mb-8 text-3xl font-bold sm:text-4xl"
+                            class="text-dark text-justify mb-8 text-3xl font-bold sm:text-4xl"
                         >
                             Make your customers happy by giving services.
                         </h2>
-                        <p class="text-body-color mb-8 text-base">
+                        <p class="text-body-color text-justify mb-8 text-base">
                             It is a long established fact that a reader will be
                             distracted by the readable content of a page when
                             looking at its layout. The point of using Lorem
                             Ipsum is that it has a more-or-less.
                         </p>
-                        <p class="text-body-color mb-12 text-base">
+                        <p class="text-body-color text-justify mb-12 text-base">
                             A domain name is one of the first steps to
                             establishing your brand. Secure a consistent brand
                             image with a domain name that matches your business.
                         </p>
                         <a
                             href="javascript:void(0)"
-                            class="bg-primary inline-flex items-center justify-center rounded-lg py-4 px-10 text-center text-base font-normal text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
+                            class="bg-primary-700 border border-primary inline-flex items-center justify-center rounded-lg py-4 px-10 text-center text-base font-normal text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
                         >
                             Get Started
                         </a>

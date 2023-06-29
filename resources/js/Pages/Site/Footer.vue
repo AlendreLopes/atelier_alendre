@@ -1,4 +1,9 @@
-<script></script>
+<script setup>
+defineProps({
+    appData: Object,
+    appCopyRight: String,
+});
+</script>
 <template>
     <!-- ====== Footer Section Start -->
     <footer class="relative z-10 bg-white pt-20 pb-10 lg:pt-[120px] lg:pb-20">
@@ -10,11 +15,8 @@
                             href="javascript:void(0)"
                             class="mb-6 inline-block max-w-[160px]"
                         >
-                            <img
-                                src="https://cdn.tailgrids.com/2.0/image/assets/images/logo/logo.svg"
-                                alt="logo"
-                                class="max-w-full"
-                            />
+                            {{ appData["data"][0]["title"] }}
+                            {{ appData["data"][0]["subtitle"] }}
                         </a>
                         <p class="text-body-color mb-7 text-base">
                             Sed ut perspiciatis undmnis is iste natus error sit
@@ -41,7 +43,14 @@
                                     />
                                 </svg>
                             </span>
-                            <span>+012 (345) 678 99</span>
+                            <span>
+                                <a
+                                    href="https://api.whatsapp.com/send?phone=5541991017166"
+                                    target="_blank"
+                                >
+                                    {{ appData["data"][0]["phone"] }}
+                                </a>
+                            </span>
                         </p>
                     </div>
                 </div>
@@ -236,7 +245,9 @@
                             </a>
                         </div>
                         <p class="text-body-color text-base">
-                            &copy; 2025 TailGrids
+                            &copy; {{ appCopyRight }}
+                            {{ appData["data"][0]["title"] }}
+                            {{ appData["data"][0]["subtitle"] }}
                         </p>
                     </div>
                 </div>

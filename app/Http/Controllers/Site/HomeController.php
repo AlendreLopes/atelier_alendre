@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Site;
 
+use App\Http\Resources\HomeResource;
 use Inertia\Inertia;
 use Inertia\Response;
 use App\Models\Site\Home;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Requests\Site\StoreHomeRequest;
 use App\Http\Requests\Site\UpdateHomeRequest;
 
@@ -18,9 +20,8 @@ class HomeController extends Controller
      */
     public function index(): Response
     {
-        $appData = Home::get();
         return Inertia::render('Site/Home', [
-            'appData' => $appData,
+            'appData' => HomeResource::collection(Home::all()),
             'appCopyRight' => date('Y'),
             'appLogin' => Route::has('login'),
             'appName' => config('app.name'),

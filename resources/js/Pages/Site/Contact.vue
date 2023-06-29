@@ -1,9 +1,38 @@
-<script></script>
+<script setup>
+import { useForm } from "@inertiajs/vue3";
+import InputError from "@/Components/InputError.vue";
+
+defineProps({
+    appData: Object,
+});
+
+const form = useForm({
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+});
+
+preserveScroll: true;
+
+const submit = () => {
+    form.post(route("contact.store"), {
+        preserveScroll: true,
+        onFinish: () => form.reset("email", "message", "name", "phone"),
+    });
+};
+</script>
 <template>
     <a id="contact"></a>
     <!-- ====== Contact Section Start -->
     <section class="relative z-10 overflow-hidden bg-white py-20 lg:py-[120px]">
         <div class="container mx-auto">
+            <div
+                v-if="$page.props.flash.message"
+                class="alert mx-auto h-12 rounded-lg border border-primary bg-primary-700"
+            >
+                {{ $page.props.flash.message }}
+            </div>
             <div class="-mx-4 flex flex-wrap lg:justify-between">
                 <div class="w-full px-4 lg:w-1/2 xl:w-6/12">
                     <div class="mb-12 max-w-[570px] lg:mb-0">
@@ -17,14 +46,7 @@
                         >
                             GET IN TOUCH WITH US
                         </h2>
-                        <p
-                            class="text-body-color mb-9 text-base leading-relaxed"
-                        >
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eius tempor incididunt ut labore et
-                            dolore magna aliqua. Ut enim adiqua minim veniam
-                            quis nostrud exercitation ullamco
-                        </p>
+
                         <div class="mb-8 flex w-full max-w-[370px]">
                             <div
                                 class="bg-primary text-primary mr-6 flex h-[60px] w-full max-w-[60px] items-center justify-center overflow-hidden rounded bg-opacity-5 sm:h-[70px] sm:max-w-[70px]"
@@ -45,8 +67,11 @@
                                     Our Location
                                 </h4>
                                 <p class="text-body-color text-base">
-                                    99 S.t Jomblo Park Pekanbaru 28292.
-                                    Indonesia
+                                    {{ appData["data"][0]["address"] }}
+                                    {{ appData["data"][0]["neighborhood"] }}
+                                    {{ appData["data"][0]["city"] }}/{{
+                                        appData["data"][0]["state"]
+                                    }}
                                 </p>
                             </div>
                         </div>
@@ -76,7 +101,12 @@
                                     Phone Number
                                 </h4>
                                 <p class="text-body-color text-base">
-                                    (+62)81 414 257 9980
+                                    <a
+                                        href="https://api.whatsapp.com/send?phone=5541991017166"
+                                        target="_blank"
+                                    >
+                                        {{ appData["data"][0]["phone"] }}
+                                    </a>
                                 </p>
                             </div>
                         </div>
@@ -100,7 +130,7 @@
                                     Email Address
                                 </h4>
                                 <p class="text-body-color text-base">
-                                    info@yourdomain.com
+                                    {{ appData["data"][0]["email"] }}
                                 </p>
                             </div>
                         </div>
@@ -110,39 +140,64 @@
                     <div
                         class="relative rounded-lg bg-white p-8 shadow-lg sm:p-12"
                     >
-                        <form>
+                        <form @submit.prevent="submit" preserveScroll>
                             <div class="mb-6">
                                 <input
+                                    id="name"
+                                    v-model="form.name"
                                     type="text"
                                     placeholder="Your Name"
                                     class="text-body-color border-[f0f0f0] focus:border-primary w-full rounded border py-3 px-[14px] text-base outline-none focus-visible:shadow-none"
+                                    autofocus
+                                />
+                                <InputError
+                                    class="mt-2"
+                                    :message="form.errors.name"
                                 />
                             </div>
                             <div class="mb-6">
                                 <input
+                                    id="email"
+                                    v-model="form.email"
                                     type="email"
                                     placeholder="Your Email"
                                     class="text-body-color border-[f0f0f0] focus:border-primary w-full rounded border py-3 px-[14px] text-base outline-none focus-visible:shadow-none"
                                 />
+                                <InputError
+                                    class="mt-2"
+                                    :message="form.errors.email"
+                                />
                             </div>
                             <div class="mb-6">
                                 <input
+                                    id="phone"
+                                    v-model="form.phone"
                                     type="text"
                                     placeholder="Your Phone"
                                     class="text-body-color border-[f0f0f0] focus:border-primary w-full rounded border py-3 px-[14px] text-base outline-none focus-visible:shadow-none"
                                 />
+                                <InputError
+                                    class="mt-2"
+                                    :message="form.errors.phone"
+                                />
                             </div>
                             <div class="mb-6">
                                 <textarea
+                                    id="message"
+                                    v-model="form.message"
                                     rows="6"
                                     placeholder="Your Message"
                                     class="text-body-color border-[f0f0f0] focus:border-primary w-full resize-none rounded border py-3 px-[14px] text-base outline-none focus-visible:shadow-none"
                                 ></textarea>
+                                <InputError
+                                    class="mt-2"
+                                    :message="form.errors.message"
+                                />
                             </div>
                             <div>
                                 <button
                                     type="submit"
-                                    class="bg-primary border-primary w-full rounded border p-3 text-white transition hover:bg-opacity-90"
+                                    class="w-full bg-primary-700 rounded border border-primary p-3 text-white transition hover:bg-opacity-90"
                                 >
                                     Send Message
                                 </button>
