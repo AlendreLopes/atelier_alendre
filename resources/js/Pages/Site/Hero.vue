@@ -24,6 +24,7 @@ defineProps({
                             With TailGrids, business and students thrive
                             together. Business can perfectly match their
                             staffing to changing demand throughout the dayed.
+                            <br />
                         </p>
                         <ul class="flex flex-wrap items-center">
                             <li>

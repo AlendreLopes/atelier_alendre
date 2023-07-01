@@ -1,4 +1,5 @@
 <script setup>
+import { ref } from "vue";
 import { useForm } from "@inertiajs/vue3";
 import InputError from "@/Components/InputError.vue";
 
@@ -6,6 +7,17 @@ defineProps({
     appData: Object,
 });
 
+const showMessage = ref(false);
+
+function setShowMessage(setValue) {
+    showMessage.value = setValue;
+}
+
+function clearForm() {
+    form.reset();
+    setShowMessage(true);
+    setTimeout(() => setShowMessage(false), 5000);
+}
 const form = useForm({
     name: "",
     email: "",
@@ -13,12 +25,10 @@ const form = useForm({
     message: "",
 });
 
-preserveScroll: true;
-
 const submit = () => {
     form.post(route("contact.store"), {
         preserveScroll: true,
-        onFinish: () => form.reset("email", "message", "name", "phone"),
+        onSuccess: () => clearForm(),
     });
 };
 </script>
@@ -28,10 +38,11 @@ const submit = () => {
     <section class="relative z-10 overflow-hidden bg-white py-20 lg:py-[120px]">
         <div class="container mx-auto">
             <div
-                v-if="$page.props.flash.message"
+                v-if="showMessage"
                 class="alert mx-auto h-12 rounded-lg border border-primary bg-primary-700"
             >
-                {{ $page.props.flash.message }}
+                <!-- {{ $page.props.flash.message }}v-if="$page.props.flash.message" -->
+                E-mail send successfully!
             </div>
             <div class="-mx-4 flex flex-wrap lg:justify-between">
                 <div class="w-full px-4 lg:w-1/2 xl:w-6/12">

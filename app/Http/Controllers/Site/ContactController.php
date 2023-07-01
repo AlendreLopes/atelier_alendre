@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Site;
 use App\Models\Site\Contact;
 use App\Http\Controllers\Controller;
 
+use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\Site\StoreContactRequest;
 use App\Http\Requests\Site\UpdateContactRequest;
 
@@ -31,8 +32,17 @@ class ContactController extends Controller
      */
     public function store(StoreContactRequest $request)
     {
-        Contact::create($request->validated())->with('message', 'E-mail send successfully!');
-        return to_route('home');
+        if (Contact::create($request->validated())) {
+            Mail::to($request->input('email'))->send(
+                new \App\Mail\ContactMail(
+                    $request->input('name'),
+                    $request->input('email'),
+                    $request->input('phone'),
+                    $request->input('message')
+                )
+            );
+        }
+        return redirect()->back();
     }
 
     /**
