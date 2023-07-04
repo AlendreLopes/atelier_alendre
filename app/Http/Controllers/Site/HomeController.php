@@ -42,7 +42,8 @@ class HomeController extends Controller
      */
     public function store(StoreHomeRequest $request)
     {
-        //
+        Home::create($request->validated());
+        return redirect()->back();
     }
 
     /**

@@ -22,7 +22,15 @@ class StoreHomeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title' => $this->title,
+            'subtitle' => $this->subtitle,
+            'descriptions' => $this->descriptions,
+            'email' => $this->email,
+            'phone' => $this->phone,
+            'address' => $this->address,
+            'neighborhood' => $this->neighborhood,
+            'city' => $this->city,
+            'state' => $this->state,
         ];
     }
 }

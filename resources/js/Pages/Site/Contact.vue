@@ -39,9 +39,8 @@ const submit = () => {
         <div class="container mx-auto">
             <div
                 v-if="showMessage"
-                class="alert mx-auto h-12 rounded-lg border border-primary bg-primary-700"
+                class="mx-auto text-center font-bold uppercase pt-2 h-12 rounded-lg border border-primary bg-primary-700"
             >
-                <!-- {{ $page.props.flash.message }}v-if="$page.props.flash.message" -->
                 E-mail send successfully!
             </div>
             <div class="-mx-4 flex flex-wrap lg:justify-between">

@@ -17,7 +17,7 @@ return new class extends Migration {
             $table->string('subtitle');
             $table->mediumText('descriptions');
             $table->char('email', 150);
-            $table->char('phone', 15);
+            $table->char('phone', 18);
             $table->char('address', 50);
             $table->char('neighborhood', 50);
             $table->char('city', 50);

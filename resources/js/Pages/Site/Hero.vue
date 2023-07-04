@@ -89,21 +89,21 @@ defineProps({
                             </h6>
                             <div class="flex items-center">
                                 <div class="mr-4 w-full py-3">
-                                    Pet Imagem
+                                    <!-- Pet Imagem -->
                                     <img
                                         src="https://cdn.tailgrids.com/2.0/image/assets/images/brands/ayroui.svg"
                                         alt="ayroui"
                                     />
                                 </div>
                                 <div class="mr-4 w-full py-3">
-                                    Eng. Dasneuner
+                                    <!-- Eng. Dasneuner -->
                                     <img
                                         src="https://cdn.tailgrids.com/2.0/image/assets/images/brands/graygrids.svg"
                                         alt="graygrids"
                                     />
                                 </div>
                                 <div class="mr-4 w-full py-3">
-                                    Psicóloga Cleunice Rocha
+                                    <!-- Psicóloga Cleunice Rocha -->
                                     <img
                                         src="https://cdn.tailgrids.com/2.0/image/assets/images/brands/uideck.svg"
                                         alt="uideck"
