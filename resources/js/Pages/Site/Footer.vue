@@ -15,8 +15,8 @@ defineProps({
                             href="javascript:void(0)"
                             class="mb-6 inline-block max-w-[160px]"
                         >
-                            {{ appData["data"][0]["title"] }}
-                            {{ appData["data"][0]["subtitle"] }}
+                            <!-- {{ appData[0]["title"] }}
+                            {{ appData[0]["subtitle"] }} -->
                         </a>
                         <p class="text-body-color mb-7 text-base">
                             Sed ut perspiciatis undmnis is iste natus error sit
@@ -48,7 +48,7 @@ defineProps({
                                     href="https://api.whatsapp.com/send?phone=5541991017166"
                                     target="_blank"
                                 >
-                                    {{ appData["data"][0]["phone"] }}
+                                    {{ appData[0]["phone"] }}
                                 </a>
                             </span>
                         </p>
@@ -246,8 +246,8 @@ defineProps({
                         </div>
                         <p class="text-body-color text-base">
                             &copy; {{ appCopyRight }}
-                            {{ appData["data"][0]["title"] }}
-                            {{ appData["data"][0]["subtitle"] }}
+                            {{ appData[0]["title"] }}
+                            {{ appData[0]["subtitle"] }}
                         </p>
                     </div>
                 </div>

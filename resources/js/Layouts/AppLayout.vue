@@ -1,13 +1,10 @@
 <script setup>
-import { Head } from "@inertiajs/vue3";
 import Banner from "@/Components/Banner.vue";
 import NavBar from "@/Components/NavBarDashboard.vue";
 </script>
 
 <template>
     <div>
-        <Head :title="title" />
-
         <Banner />
 
         <div class="min-h-screen bg-gray-100">

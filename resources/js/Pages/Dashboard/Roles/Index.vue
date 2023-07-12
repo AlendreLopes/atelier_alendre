@@ -3,7 +3,7 @@ import { Head, Link } from "@inertiajs/vue3";
 import { useRolesAndPermissions } from "@/Composables/RolesAndPermissions";
 import AppLayout from "@/Layouts/AppLayout.vue";
 import Welcome from "@/Components/Welcome.vue";
-
+import NavLink from "@/Components/NavLink.vue";
 const { hasRole } = useRolesAndPermissions();
 </script>
 
@@ -12,19 +12,13 @@ const { hasRole } = useRolesAndPermissions();
     <AppLayout>
         <template #header>
             <div class="hidden space-x-4 sm:-my-px sm:ml-10 sm:flex">
+                <h2>[ Roles ]</h2>
                 <Link
                     v-if="hasRole('theCreator', 'admin')"
                     :href="route('users.index')"
                     :active="route().current('users.index')"
                 >
                     Users
-                </Link>
-                <Link
-                    v-if="hasRole('theCreator', 'admin')"
-                    :href="route('roles.index')"
-                    :active="route().current('roles.index')"
-                >
-                    Roles
                 </Link>
                 <Link
                     v-if="hasRole('theCreator', 'admin')"

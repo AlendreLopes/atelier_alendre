@@ -77,10 +77,10 @@ const submit = () => {
                                     Our Location
                                 </h4>
                                 <p class="text-body-color text-base">
-                                    {{ appData["data"][0]["address"] }}
-                                    {{ appData["data"][0]["neighborhood"] }}
-                                    {{ appData["data"][0]["city"] }}/{{
-                                        appData["data"][0]["state"]
+                                    {{ appData[0]["address"] }}
+                                    {{ appData[0]["neighborhood"] }}
+                                    {{ appData[0]["city"] }}/{{
+                                        appData[0]["state"]
                                     }}
                                 </p>
                             </div>
@@ -115,7 +115,7 @@ const submit = () => {
                                         href="https://api.whatsapp.com/send?phone=5541991017166"
                                         target="_blank"
                                     >
-                                        {{ appData["data"][0]["phone"] }}
+                                        {{ appData[0]["phone"] }}
                                     </a>
                                 </p>
                             </div>
@@ -140,7 +140,7 @@ const submit = () => {
                                     Email Address
                                 </h4>
                                 <p class="text-body-color text-base">
-                                    {{ appData["data"][0]["email"] }}
+                                    {{ appData[0]["email"] }}
                                 </p>
                             </div>
                         </div>

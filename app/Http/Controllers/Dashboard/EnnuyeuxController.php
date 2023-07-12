@@ -12,6 +12,10 @@ use App\Http\Requests\Dashboard\UpdateEnnuyeuxRequest;
 
 class EnnuyeuxController extends Controller
 {
+    // public function __construct()
+    // {
+    //     $this->middleware(['role:theCreator|admin|whatsapp']);
+    // }
     /**
      * Display a listing of the resource.
      */
@@ -20,7 +24,7 @@ class EnnuyeuxController extends Controller
         //
     }
 
-    public function ennuyeuxBavard()
+    public function bavard()
     {
         // Webhook WhatsApp
     }

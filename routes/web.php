@@ -7,7 +7,10 @@ use Illuminate\Foundation\Application;
 
 use App\Http\Controllers\Site\HomeController;
 use App\Http\Controllers\Site\ContactController;
+use App\Http\Controllers\Dashboard\RolesController;
+use App\Http\Controllers\Dashboard\UsersController;
 use App\Http\Controllers\Dashboard\EnnuyeuxController;
+use App\Http\Controllers\Dashboard\PermissionsController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -17,6 +20,14 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
-    Route::get('/dashboard/ennuyeux-quoi-de-neuf', [EnnuyeuxController::class, 'ennuyex-bavard'])->name('bavard');
-    Route::get('/dashboard/quoi-de-neuf', [EnnuyeuxController::class, 'quoiDeNeuf'])->name('quoi-de-neuf');
+});
+
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified', 'role:theCreator|admin'])->group(function () {
+    Route::resource('/dashboard/users', UsersController::class);
+    Route::resource('/dashboard/roles', RolesController::class);
+    Route::resource('/dashboard/permissions', PermissionsController::class);
+});
+
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified', 'role:whatsapp'])->group(function () {
+    Route::resource('/dashboard/ennuyeux', EnnuyeuxController::class);
 });
