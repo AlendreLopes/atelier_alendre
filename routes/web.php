@@ -22,12 +22,12 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     })->name('dashboard');
 });
 
-Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified', 'role:theCreator|admin'])->group(function () {
+Route::middleware(['auth', config('jetstream.auth_session'), 'verified', 'role:theCreator|admin'])->group(function () {
     Route::resource('/dashboard/users', UsersController::class);
     Route::resource('/dashboard/roles', RolesController::class);
     Route::resource('/dashboard/permissions', PermissionsController::class);
 });
 
-Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified', 'role:whatsapp'])->group(function () {
+Route::middleware(['auth', config('jetstream.auth_session'), 'verified', 'role:whatsapp'])->group(function () {
     Route::resource('/dashboard/ennuyeux', EnnuyeuxController::class);
 });

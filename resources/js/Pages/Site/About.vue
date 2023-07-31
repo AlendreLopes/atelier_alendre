@@ -637,7 +637,7 @@ defineProps({
                             href="#contact"
                             class="bg-primary-700 border border-primary inline-flex items-center justify-center rounded-lg py-4 px-10 text-center text-base font-normal text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
                         >
-                            Get Started
+                            Talk to us
                         </a>
                     </div>
                 </div>

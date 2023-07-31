@@ -1,10 +1,7 @@
 <script setup>
 import { Head, Link } from "@inertiajs/vue3";
-import { useRolesAndPermissions } from "@/Composables/RolesAndPermissions";
 import AppLayout from "@/Layouts/AppLayout.vue";
 import Welcome from "@/Components/Welcome.vue";
-
-const { hasRole } = useRolesAndPermissions();
 </script>
 
 <template>
@@ -12,34 +9,7 @@ const { hasRole } = useRolesAndPermissions();
     <AppLayout>
         <template #header>
             <div class="hidden space-x-4 sm:-my-px sm:ml-10 sm:flex">
-                <Link
-                    v-if="hasRole('theCreator', 'admin')"
-                    :href="route('users.index')"
-                    :active="route().current('users.index')"
-                >
-                    Users
-                </Link>
-                <Link
-                    v-if="hasRole('theCreator', 'admin')"
-                    :href="route('roles.index')"
-                    :active="route().current('roles.index')"
-                >
-                    Roles
-                </Link>
-                <Link
-                    v-if="hasRole('theCreator', 'admin')"
-                    :href="route('permissions.index')"
-                    :active="route().current('permissions.index')"
-                >
-                    Permissions
-                </Link>
-                <Link
-                    v-if="hasRole('theCreator', 'admin', 'whatsapp')"
-                    :href="route('ennuyeux.index')"
-                    :active="route().current('ennuyeux.index')"
-                >
-                    WhatsApp
-                </Link>
+                <h2>Dashboard</h2>
             </div>
         </template>
 

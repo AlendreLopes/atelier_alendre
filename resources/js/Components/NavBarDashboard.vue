@@ -55,9 +55,30 @@ const logout = () => {
                             Dashboard
                         </NavLink>
                         <NavLink
-                            v-if="hasRole(['theCreator', 'admin', 'whatsapp'])"
-                            :href="route('ennuyeux.ennuyeuxBavard')"
-                            :active="route().current('ennuyeux.ennuyeuxBavard')"
+                            v-if="hasRole('admin')"
+                            :href="route('users.index')"
+                            :active="route().current('users.index')"
+                        >
+                            Users
+                        </NavLink>
+                        <NavLink
+                            v-if="hasRole('admin')"
+                            :href="route('roles.index')"
+                            :active="route().current('roles.index')"
+                        >
+                            Roles
+                        </NavLink>
+                        <NavLink
+                            v-if="hasRole('admin')"
+                            :href="route('permissions.index')"
+                            :active="route().current('permissions.index')"
+                        >
+                            Permissions
+                        </NavLink>
+                        <NavLink
+                            v-if="hasRole('admin', 'whatsapp')"
+                            :href="route('ennuyeux.index')"
+                            :active="route().current('ennuyeux.index')"
                         >
                             WhatsApp
                         </NavLink>
