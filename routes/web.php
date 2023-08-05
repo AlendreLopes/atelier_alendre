@@ -3,7 +3,6 @@
 use Inertia\Inertia;
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Foundation\Application;
 
 use App\Http\Controllers\Site\HomeController;
 use App\Http\Controllers\Site\ContactController;
@@ -20,6 +19,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
+    // Route::resource('/dashboard', DashboardController::class);
 });
 
 Route::middleware(['auth', config('jetstream.auth_session'), 'verified', 'role:theCreator|admin'])->group(function () {

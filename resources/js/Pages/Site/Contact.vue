@@ -18,6 +18,7 @@ function clearForm() {
     setShowMessage(true);
     setTimeout(() => setShowMessage(false), 5000);
 }
+
 const form = useForm({
     name: "",
     email: "",
@@ -37,12 +38,6 @@ const submit = () => {
     <!-- ====== Contact Section Start -->
     <section class="relative z-10 overflow-hidden bg-white py-20 lg:py-[120px]">
         <div class="container mx-auto">
-            <div
-                v-if="showMessage"
-                class="mx-auto text-center font-bold uppercase pt-2 h-12 rounded-lg border border-primary bg-primary-700"
-            >
-                E-mail send successfully!
-            </div>
             <div class="-mx-4 flex flex-wrap lg:justify-between">
                 <div class="w-full px-4 lg:w-1/2 xl:w-6/12">
                     <div class="mb-12 max-w-[570px] lg:mb-0">
@@ -150,7 +145,7 @@ const submit = () => {
                     <div
                         class="relative rounded-lg bg-white p-8 shadow-lg sm:p-12"
                     >
-                        <form @submit.prevent="submit" preserveScroll>
+                        <form @submit.prevent="submit">
                             <div class="mb-6">
                                 <input
                                     id="name"

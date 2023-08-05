@@ -7,7 +7,6 @@ services:
             args:
                 WWWGROUP: "${WWWGROUP}"
         image: sail-8.2/app
-        container_name: alendre
         extra_hosts:
             - "host.docker.internal:host-gateway"
         ports:
@@ -30,7 +29,6 @@ services:
             - mailpit
     mysql:
         image: "mysql/mysql-server:8.0"
-        container_name: alendre_mysql
         ports:
             - "${FORWARD_DB_PORT:-3306}:3306"
         environment:
@@ -55,7 +53,6 @@ services:
             timeout: 5s
     redis:
         image: "redis:alpine"
-        container_name: alendre_redis
         ports:
             - "${FORWARD_REDIS_PORT:-6379}:6379"
         volumes:
@@ -71,7 +68,6 @@ services:
             timeout: 5s
     meilisearch:
         image: "getmeili/meilisearch:latest"
-        container_name: alendre_meilisearch
         ports:
             - "${FORWARD_MEILISEARCH_PORT:-7700}:7700"
         volumes:
@@ -89,7 +85,6 @@ services:
             timeout: 5s
     mailpit:
         image: "axllent/mailpit:latest"
-        container_name: alendre_mailpit
         ports:
             - "${FORWARD_MAILPIT_PORT:-1025}:1025"
             - "${FORWARD_MAILPIT_DASHBOARD_PORT:-8025}:8025"
