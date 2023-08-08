@@ -8,7 +8,7 @@ const showMessage = ref(false);
 
 const page = usePage();
 
-const flash = computed(() => page.props.flash.message);
+// const flash = computed(() => page.props.flash.message);
 
 if (page.props.flash.message) {
     hideMessage();

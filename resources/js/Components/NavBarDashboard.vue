@@ -76,7 +76,7 @@ const logout = () => {
                             Permissions
                         </NavLink>
                         <NavLink
-                            v-if="hasRole('admin', 'whatsapp')"
+                            v-if="hasRole('whatsapp')"
                             :href="route('ennuyeux.index')"
                             :active="route().current('ennuyeux.index')"
                         >
@@ -152,6 +152,28 @@ const logout = () => {
                                 </DropdownLink>
 
                                 <div class="border-t border-gray-200" />
+
+                                <!-- Account Management -->
+                                <div
+                                    v-if="hasRole('admin')"
+                                    class="block px-4 py-2 text-xs text-gray-400"
+                                >
+                                    Manage Account Roles/Permissions
+                                </div>
+
+                                <DropdownLink
+                                    v-if="hasRole('admin')"
+                                    :href="route('roles.index')"
+                                >
+                                    Roles
+                                </DropdownLink>
+
+                                <DropdownLink
+                                    v-if="hasRole('admin')"
+                                    :href="route('permissions.index')"
+                                >
+                                    Permissions
+                                </DropdownLink>
 
                                 <!-- Authentication -->
                                 <form @submit.prevent="logout">

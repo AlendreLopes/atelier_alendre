@@ -4,9 +4,12 @@ namespace App\Http\Controllers\Dashboard;
 
 use Inertia\Inertia;
 use Inertia\Response;
+
 use Spatie\Permission\Models\Role;
-use App\Http\Controllers\Controller;
 use Spatie\Permission\Models\Permission;
+
+use App\Http\Controllers\Controller;
+
 use App\Http\Resources\Dashboard\RolesResource;
 use App\Http\Requests\Dashboard\RolesRequest;
 use App\Http\Resources\Dashboard\PermissionsResource;

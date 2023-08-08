@@ -3,15 +3,25 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Models\User;
+
 use Inertia\Inertia;
 use Inertia\Response;
+
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
-use App\Http\Resources\Dashboard\UsersResource;
+
 use App\Actions\Fortify\PasswordValidationRules;
+
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
+
+use App\Http\Resources\Dashboard\PermissionsResource;
+use App\Http\Resources\Dashboard\RolesResource;
+use App\Http\Resources\Dashboard\UsersResource;
+
+use App\Http\Controllers\Controller;
 
 class UsersController extends Controller
 {
@@ -70,6 +80,8 @@ class UsersController extends Controller
     {
         return Inertia::render('Dashboard/Users/Edit', [
             'user' => new UsersResource($user),
+            'roles' => new RolesResource(Role::all()),
+            'permissions' => new PermissionsResource(Permission::all()),
         ]);
     }
 

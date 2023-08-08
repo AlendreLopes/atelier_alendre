@@ -11,13 +11,15 @@ defineProps({
             <div class="-mx-4 flex flex-wrap">
                 <div class="w-full px-4 sm:w-2/3 lg:w-3/12">
                     <div class="mb-10 w-full">
-                        <a
-                            href="javascript:void(0)"
-                            class="mb-6 inline-block max-w-[160px]"
-                        >
-                            <!-- {{ appData[0]["title"] }}
-                            {{ appData[0]["subtitle"] }} -->
-                        </a>
+                        <h4 class="text-dark mb-4 text-lg font-semibold">
+                            <a
+                                href="javascript:void(0)"
+                                class="mb-6 inline-block max-w-[160px]"
+                            >
+                                {{ appData[0]["title"] }}
+                                {{ appData[0]["subtitle"] }}
+                            </a>
+                        </h4>
                         <p class="text-body-color mb-7 text-base">
                             Sed ut perspiciatis undmnis is iste natus error sit
                             amet voluptatem totam rem aperiam.

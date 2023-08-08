@@ -1,4 +1,5 @@
 <script setup>
+import { onMounted, watch } from "vue";
 import { Head, Link, useForm } from "@inertiajs/vue3";
 import Multiselect from "vue-multiselect";
 
@@ -7,6 +8,14 @@ import InputError from "@/Components/InputError.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import TextInput from "@/Components/TextInput.vue";
+
+// Table
+import Table from "@/Components/Table.vue";
+import TableHeaderRow from "@/Components/TableHeaderRow.vue";
+import TableHeaderData from "@/Components/TableHeaderData.vue";
+import TableBodyHeader from "@/Components/TableBodyHeader.vue";
+import TableBodyRow from "@/Components/TableBodyRow.vue";
+import TableBodyData from "@/Components/TableBodyData.vue";
 
 const props = defineProps({
     role: {
@@ -29,6 +38,13 @@ const submit = () => {
         }
     );
 };
+//
+onMounted(() => (form.permissions = props.role?.permissions));
+//
+watch(
+    () => props.role,
+    () => (props.permissions = props.role?.permissions)
+);
 </script>
 
 <template>
@@ -96,10 +112,54 @@ const submit = () => {
                             </div>
                         </form>
                     </div>
+                    <div
+                        class="mt-6 max-w-6xl mx-auto bg-slate-100 shadow-lg rounded-lg p-6"
+                    >
+                        <h1>Permissions</h1>
+                        <Table>
+                            <template #header>
+                                <TableHeaderRow>
+                                    <TableHeaderData>ID</TableHeaderData>
+                                    <TableHeaderData>Name</TableHeaderData>
+                                    <TableHeaderData>Action</TableHeaderData>
+                                </TableHeaderRow>
+                            </template>
+                            <template #default>
+                                <TableBodyRow
+                                    v-for="rolePermission in role.permissions"
+                                    :key="rolePermission.id"
+                                    class="border-b"
+                                >
+                                    <TableBodyHeader>{{
+                                        rolePermission.id
+                                    }}</TableBodyHeader>
+                                    <TableBodyData>{{
+                                        rolePermission.name
+                                    }}</TableBodyData>
+                                    <TableBodyData class="space-x-4">
+                                        <Link
+                                            :href="
+                                                route(
+                                                    'roles.permissions.revoke',
+                                                    [role.id, rolePermission.id]
+                                                )
+                                            "
+                                            method="DELETE"
+                                            as="button"
+                                            class="text-red-400 hover:text-red-900"
+                                            preserve-scroll
+                                        >
+                                            Revoke
+                                        </Link>
+                                    </TableBodyData>
+                                </TableBodyRow>
+                            </template>
+                        </Table>
+                    </div>
                 </div>
             </div>
         </div>
     </AppLayout>
 </template>
 
-<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
+<style src="vue-multiselect/dist/vue-multiselect.css"></style>

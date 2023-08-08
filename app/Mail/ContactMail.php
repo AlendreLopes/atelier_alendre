@@ -43,7 +43,7 @@ class ContactMail extends Mailable
     public function content(): Content
     {
         $this->subject('Sended by Site');
-        $this->to($this->email, $this->name);
+        $this->to(config('mail.from.address'), config('mail.from.name'));
         $this->replyTo($this->email, $this->name);
         return new Content(
             markdown: 'emails.contact',
