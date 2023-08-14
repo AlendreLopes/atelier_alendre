@@ -13,7 +13,8 @@ class PermissionsRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return auth()->user()->hasRole('theCreator', 'admin');
+        // return auth()->user()->hasRole('theCreator', 'admin');
+        return true;
     }
 
     /**

@@ -2,6 +2,8 @@
 import { onMounted, watch } from "vue";
 import { Head, Link, useForm } from "@inertiajs/vue3";
 
+import VueMultiselect from "vue-multiselect";
+
 import AppLayout from "@/Layouts/AppLayout.vue";
 
 import InputError from "@/Components/InputError.vue";
@@ -11,8 +13,8 @@ import PrimaryButton from "@/Components/PrimaryButton.vue";
 import InputText from "@/Components/TextInput.vue";
 
 import Table from "@/Components/Table.vue";
+import THeader from "@/Components/TableHeaderData.vue";
 import THeaderRow from "@/Components/TableHeaderRow.vue";
-import THeader from "@/Components/TableHeader.vue";
 import TBodyRow from "@/Components/TableBodyRow.vue";
 import TBodyHeader from "@/Components/TableBodyHeader.vue";
 import TBodyData from "@/Components/TableBodyData.vue";
@@ -36,7 +38,9 @@ const form = useForm({
 const submit = () => {
     form.transform((data) => ({
         ...data,
-    })).put(route("users.update", props.user?.id));
+    })).put(route("users.update", props.user?.id), {
+        onFinish: () => form.reset("name", "email"),
+    });
 };
 
 // After DOM has finished we call
@@ -73,14 +77,6 @@ watch(
         <div class="py-2">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                    <div class="flex justify-between">
-                        <h1>Update User</h1>
-                        <Link
-                            :href="route('users.index')"
-                            class="px-2 py-2 text-white font-semibold bg-indigo-500 hover:bg-indigo-700 rounded"
-                            >Users Index</Link
-                        >
-                    </div>
                     <div class="max-w-md mx-auto p-6">
                         <form @submit.prevent="submit">
                             <div>
@@ -114,6 +110,35 @@ watch(
                                 />
                             </div>
 
+                            <div class="mt-4">
+                                <InputLabel for="roles" value="Roles" />
+                                <VueMultiselect
+                                    v-model="form.roles"
+                                    :options="roles"
+                                    :multiple="true"
+                                    :close-on-select="true"
+                                    placeholder="Select the role"
+                                    label="name"
+                                    track-by="id"
+                                />
+                            </div>
+
+                            <div class="mt-4">
+                                <InputLabel
+                                    for="permissions"
+                                    value="Permissions"
+                                />
+                                <VueMultiselect
+                                    v-model="form.permissions"
+                                    :options="permissions"
+                                    :multiple="true"
+                                    :close-on-select="true"
+                                    placeholder="Select the permissions"
+                                    label="name"
+                                    track-by="id"
+                                />
+                            </div>
+
                             <div class="flex items-center justify-end mt-4">
                                 <PrimaryButton
                                     class="ml-4"
@@ -128,24 +153,24 @@ watch(
                     <div
                         class="mt-6 max-w-6xl mx-auto bg-slate-100 shadow-lg rounded-lg p-6"
                     >
-                        <h1>Roles</h1>
+                        <h1 class="p-1">Roles</h1>
                         <Table>
                             <template #header>
-                                <THRow>
+                                <THeaderRow>
                                     <THeader>ID</THeader>
                                     <THeader>Name</THeader>
                                     <THeader>Action</THeader>
-                                </THRow>
+                                </THeaderRow>
                             </template>
                             <template #default>
-                                <TBRow
+                                <TBodyRow
                                     v-for="userRole in user.roles"
                                     :key="userRole.id"
                                     class="border-b"
                                 >
-                                    <TBHeader>{{ userRole.id }}</TBHeader>
-                                    <TBData>{{ userRole.name }}</TBData>
-                                    <TBData class="space-x-4">
+                                    <TBodyHeader>{{ userRole.id }}</TBodyHeader>
+                                    <TBodyData>{{ userRole.name }}</TBodyData>
+                                    <TBodyData class="space-x-4">
                                         <Link
                                             :href="
                                                 route('users.roles.revoke', [
@@ -160,8 +185,8 @@ watch(
                                         >
                                             Revoke
                                         </Link>
-                                    </TBData>
-                                </TBRow>
+                                    </TBodyData>
+                                </TBodyRow>
                             </template>
                         </Table>
                     </div>
@@ -171,21 +196,25 @@ watch(
                         <h1>Permissions</h1>
                         <Table>
                             <template #header>
-                                <THRow>
+                                <THeaderRow>
                                     <THeader>ID</THeader>
                                     <THeader>Name</THeader>
                                     <THeader>Action</THeader>
-                                </THRow>
+                                </THeaderRow>
                             </template>
                             <template #default>
-                                <TBRow
+                                <TBodyRow
                                     v-for="userPermission in user.permissions"
                                     :key="userPermission.id"
                                     class="border-b"
                                 >
-                                    <TBHeader>{{ userPermission.id }}</TBHeader>
-                                    <TBData>{{ userPermission.name }}</TBData>
-                                    <TBData class="space-x-4">
+                                    <TBodyHeader>{{
+                                        userPermission.id
+                                    }}</TBodyHeader>
+                                    <TBodyData>{{
+                                        userPermission.name
+                                    }}</TBodyData>
+                                    <TBodyData class="space-x-4">
                                         <Link
                                             :href="
                                                 route(
@@ -200,8 +229,8 @@ watch(
                                         >
                                             Revoke
                                         </Link>
-                                    </TBData>
-                                </TBRow>
+                                    </TBodyData>
+                                </TBodyRow>
                             </template>
                         </Table>
                     </div>
@@ -210,3 +239,4 @@ watch(
         </div>
     </AppLayout>
 </template>
+<style src="vue-multiselect/dist/vue-multiselect.css"></style>

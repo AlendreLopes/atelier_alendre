@@ -30,13 +30,20 @@ const form = useForm({
     permissions: [],
 });
 //
+// const submit = () => {
+//     form.transform((data) => ({ ...data })).put(
+//         route("roles.update", props.role.id),
+//         {
+//             onFinish: () => form.reset("name"),
+//         }
+//     );
+// };
 const submit = () => {
-    form.transform((data) => ({ ...data })).put(
-        route("roles.update", props.role.id),
-        {
-            onFinish: () => form.reset("name"),
-        }
-    );
+    form.transform((data) => ({
+        ...data,
+    })).put(route("roles.update", props.role.id), {
+        onFinish: () => form.reset("name"),
+    });
 };
 //
 onMounted(() => (form.permissions = props.role?.permissions));
@@ -149,7 +156,8 @@ watch(
                                             class="text-red-400 hover:text-red-900"
                                             preserve-scroll
                                         >
-                                            Revoke
+                                            Revoke R {{ role.id }} P
+                                            {{ rolePermission.id }}
                                         </Link>
                                     </TableBodyData>
                                 </TableBodyRow>

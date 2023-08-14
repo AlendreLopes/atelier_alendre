@@ -34,11 +34,6 @@ class SeederPermission extends Seeder
         Permission::create(['name' => 'password']);
         Permission::create(['name' => 'print']);
         // 
-        Permission::create(['name' => 'dispatch']);
-        Permission::create(['name' => 'give_back']);
-        Permission::create(['name' => 'order']);
-        Permission::create(['name' => 'invoice']);
-        // 
         Permission::create(['name' => 'whatsapp_audio']);
         Permission::create(['name' => 'whatsapp_delete']);
         Permission::create(['name' => 'whatsapp_download']);
@@ -49,11 +44,7 @@ class SeederPermission extends Seeder
         Permission::create(['name' => 'whatsapp_share']);
         // create roles and assign created permissions
         $roleUser = Role::create(['name' => 'user'])
-            ->givePermissionTo(['download', 'comment', 'comment_edit', 'image', 'print', 'password', 'view', 'dispatch', 'give_back', 'order', 'invoice']);
-        // 
-        // or may be done by chaining
-        $roleECommerce = Role::create(['name' => 'e_commerce'])
-            ->givePermissionTo(['download', 'comment', 'comment_edit', 'image', 'print', 'password', 'view', 'dispatch', 'give_back', 'order', 'invoice']);
+            ->givePermissionTo(['download', 'comment', 'comment_edit', 'image', 'print', 'password', 'view']);
         // 
         // or may be done by chaining
         $roleWhatsApp = Role::create(['name' => 'whatsapp'])

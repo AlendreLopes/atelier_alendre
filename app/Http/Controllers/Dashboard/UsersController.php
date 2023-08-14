@@ -26,6 +26,11 @@ use App\Http\Controllers\Controller;
 class UsersController extends Controller
 {
     use PasswordValidationRules;
+
+    public function __construct()
+    {
+        $this->middleware(['role:theCreator|admin']);
+    }
     /**
      * Display a listing of the resource.
      */
@@ -78,10 +83,11 @@ class UsersController extends Controller
      */
     public function edit(User $user): Response
     {
+        $user->load(['roles', 'permissions']);
         return Inertia::render('Dashboard/Users/Edit', [
             'user' => new UsersResource($user),
-            'roles' => new RolesResource(Role::all()),
-            'permissions' => new PermissionsResource(Permission::all()),
+            'roles' => RolesResource::collection(Role::all()),
+            'permissions' => PermissionsResource::collection(Permission::all()),
         ]);
     }
 
@@ -100,7 +106,10 @@ class UsersController extends Controller
             'name' => $request['name'],
             'email' => $request['email'],
         ]);
-        return to_route('users.index')->with('message', 'Your date has been taken!');
+        $user->syncRoles($request->input('roles.*.name'));
+        $user->syncPermissions($request->input('permissions.*.name'));
+        return back();
+        // return to_route('users.index')->with('message', 'Your date has been taken!');
     }
 
     /**

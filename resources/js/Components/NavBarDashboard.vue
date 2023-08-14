@@ -54,27 +54,7 @@ const logout = () => {
                         >
                             Dashboard
                         </NavLink>
-                        <NavLink
-                            v-if="hasRole('admin')"
-                            :href="route('users.index')"
-                            :active="route().current('users.index')"
-                        >
-                            Users
-                        </NavLink>
-                        <NavLink
-                            v-if="hasRole('admin')"
-                            :href="route('roles.index')"
-                            :active="route().current('roles.index')"
-                        >
-                            Roles
-                        </NavLink>
-                        <NavLink
-                            v-if="hasRole('admin')"
-                            :href="route('permissions.index')"
-                            :active="route().current('permissions.index')"
-                        >
-                            Permissions
-                        </NavLink>
+
                         <NavLink
                             v-if="hasRole('whatsapp')"
                             :href="route('ennuyeux.index')"
@@ -158,22 +138,30 @@ const logout = () => {
                                     v-if="hasRole('admin')"
                                     class="block px-4 py-2 text-xs text-gray-400"
                                 >
-                                    Manage Account Roles/Permissions
+                                    Manage
                                 </div>
-
+                                <DropdownLink
+                                    v-if="hasRole('admin')"
+                                    :href="route('users.index')"
+                                    :active="route().current('users.index')"
+                                >
+                                    - Users
+                                </DropdownLink>
                                 <DropdownLink
                                     v-if="hasRole('admin')"
                                     :href="route('roles.index')"
                                 >
-                                    Roles
+                                    - Roles
                                 </DropdownLink>
 
                                 <DropdownLink
                                     v-if="hasRole('admin')"
                                     :href="route('permissions.index')"
                                 >
-                                    Permissions
+                                    - Permissions
                                 </DropdownLink>
+
+                                <div class="border-t border-gray-200" />
 
                                 <!-- Authentication -->
                                 <form @submit.prevent="logout">

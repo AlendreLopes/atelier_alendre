@@ -14,10 +14,10 @@ use App\Http\Controllers\Dashboard\EnnuyeuxController;
 
 use App\Http\Controllers\Dashboard\PermissionsController;
 
-use App\Http\Controllers\Dashboard\UserRoleRevokeController;
-use App\Http\Controllers\Dashboard\PermissionRevokeController;
-use App\Http\Controllers\Dashboard\UserPermissionRevokeController;
+use App\Http\Controllers\Dashboard\RolesPermissionRevokeController;
 
+use App\Http\Controllers\Dashboard\UserRoleRevokeController;
+use App\Http\Controllers\Dashboard\UserPermissionRevokeController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -35,7 +35,7 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified', 'role:t
     Route::resource('/dashboard/roles', RolesController::class);
     Route::resource('/dashboard/permissions', PermissionsController::class);
     // Delete Roles and Permissions
-    Route::delete('/dashboard/roles/{role}/permissions/{permission}', PermissionRevokeController::class)
+    Route::delete('/dashboard/roles/{role}/permissions/{permission}', RolesPermissionRevokeController::class)
         ->name('roles.permissions.revoke');
     Route::delete('/dashboard/users/{user}/role/{role}', UserRoleRevokeController::class)
         ->name('users.roles.revoke');

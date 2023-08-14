@@ -12,16 +12,16 @@ use App\Http\Requests\Dashboard\UpdateEnnuyeuxRequest;
 
 class EnnuyeuxController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware(['role:theCreator|admin|whatsapp']);
-    // }
+    public function __construct()
+    {
+        $this->middleware(['role:theCreator|admin|whatsapp']);
+    }
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): Response
     {
-        //
+        return Inertia::render('Dashboard/Ennuyeux/Index');
     }
 
     public function bavard()

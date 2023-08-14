@@ -61,12 +61,7 @@ function hideMessage() {
                                 </svg>
                             </span>
                             <p class="m-3 font-medium text-white truncate">
-                                <span class="md:hidden">
-                                    {{ $page.props.flash.message }}
-                                </span>
-                                <span class="hidden md:inline">
-                                    {{ $page.props.flash.message }}
-                                </span>
+                                {{ $page.props.flash.message }}
                             </p>
                         </div>
                     </div>

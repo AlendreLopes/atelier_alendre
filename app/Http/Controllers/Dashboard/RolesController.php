@@ -11,8 +11,8 @@ use Spatie\Permission\Models\Permission;
 use App\Http\Controllers\Controller;
 
 use App\Http\Resources\Dashboard\RolesResource;
-use App\Http\Requests\Dashboard\RolesRequest;
 use App\Http\Resources\Dashboard\PermissionsResource;
+use App\Http\Requests\Dashboard\RolesRequest;
 
 class RolesController extends Controller
 {
@@ -82,7 +82,8 @@ class RolesController extends Controller
         $editRole = Role::findById($id);
         $editRole->update($request->validated());
         $editRole->syncPermissions($request->input('permissions.*.name'));
-        return to_route('roles.index')->with('message', 'Role updated.');
+        return back();
+        // return to_route('roles.index')->with('message', 'Role updated.');
     }
 
     /**
